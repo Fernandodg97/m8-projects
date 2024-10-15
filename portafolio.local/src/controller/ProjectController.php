@@ -1,0 +1,73 @@
+<?php
+
+require_once "DatabaseController.php";
+
+class ProjectController {
+
+    private $connection;
+
+    public function __construct() {
+        $this->connection = DatabaseController::connect();
+    }
+
+    public function getProjects() {
+
+        try  {
+       
+            $sql = "SELECT * 
+                    FROM Project
+                    WHERE 1";
+        
+            $statement = $this->connection->prepare($sql);
+            $statement->setFetchMode(PDO::FETCH_OBJ);
+            $statement->execute();
+
+            $result = $statement->fetchAll();
+
+            return $result;
+
+          } catch(PDOException $error) {
+              echo $sql . "<br>" . $error->getMessage();
+          }
+    }
+
+    public function getUser() {
+        try  {
+       
+            $sql = "SELECT * 
+                    FROM User
+                    WHERE 1";
+        
+            $statement = $this->connection->prepare($sql);
+            $statement->setFetchMode(PDO::FETCH_OBJ);
+            $statement->execute();
+
+            $result = $statement->fetchAll();
+
+            return $result;
+
+          } catch(PDOException $error) {
+              echo $sql . "<br>" . $error->getMessage();
+          }
+    }
+    public function getNav() {
+        try  {
+       
+            $sql = "SELECT * 
+                    FROM Nav
+                    WHERE 1";
+        
+            $statement = $this->connection->prepare($sql);
+            $statement->setFetchMode(PDO::FETCH_OBJ);
+            $statement->execute();
+
+            $result = $statement->fetchAll();
+
+            return $result;
+
+          } catch(PDOException $error) {
+              echo $sql . "<br>" . $error->getMessage();
+          }
+    }
+
+}
